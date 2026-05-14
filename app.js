@@ -39,6 +39,7 @@ const DOM = {
   progressFill: document.getElementById("progress-fill"),
   qNumberBadge: document.getElementById("q-number-badge"),
   qText: document.getElementById("q-text"),
+  qImageContainer: document.getElementById("q-image-container"),
   qOptions: document.getElementById("q-options"),
   btnPrev: document.getElementById("btn-prev"),
   btnNext: document.getElementById("btn-next"),
@@ -231,6 +232,20 @@ function renderQuestion() {
 
   DOM.qNumberBadge.textContent = `SOAL ${String(state.currentQuestionIndex + 1).padStart(2, "0")}`;
   DOM.qText.textContent = q.q;
+
+  if (q.img) {
+    DOM.qImageContainer.innerHTML = `
+      <div class="mt-4 mb-4 flex justify-center">
+        <img src="images/${q.img}" 
+             alt="Gambar Soal" 
+             class="rounded-xl border border-slate-200 max-h-64 object-contain shadow-sm bg-white p-2">
+      </div>
+    `;
+    DOM.qImageContainer.classList.remove("hidden");
+  } else {
+    DOM.qImageContainer.innerHTML = "";
+    DOM.qImageContainer.classList.add("hidden");
+  }
 
   const letters = ["A", "B", "C", "D"];
   const pillColors = [
