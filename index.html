@@ -59,6 +59,46 @@
       .option-selected {
         animation: pulse-glow 2s infinite;
       }
+      @keyframes floating {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-15px) rotate(1deg);
+        }
+      }
+      @keyframes floatingDelay1 {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-12px) rotate(-1deg);
+        }
+      }
+      @keyframes floatingDelay2 {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-18px) rotate(1.5deg);
+        }
+      }
+      .instruction-card {
+        animation: floating 4s ease-in-out infinite;
+      }
+      .instruction-card.delay1 {
+        animation: floatingDelay1 4s ease-in-out infinite 0.3s;
+      }
+      .instruction-card.delay2 {
+        animation: floatingDelay2 4s ease-in-out infinite 0.6s;
+      }
+      .instruction-icon {
+        font-size: 3rem;
+        animation: floating 4s ease-in-out infinite;
+      }
       .progress-bar {
         transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -117,11 +157,264 @@
       .floating-particle.pulse {
         animation: pulse-particle 0.6s ease-out forwards;
       }
+      /* Splash Screen Book Opening Effect - Enhanced */
+      @keyframes bookPageLeft {
+        0% {
+          transform: perspective(1200px) rotateY(-90deg);
+          opacity: 0;
+        }
+        100% {
+          transform: perspective(1200px) rotateY(0deg);
+          opacity: 1;
+        }
+      }
+      @keyframes bookPageRight {
+        0% {
+          transform: perspective(1200px) rotateY(90deg);
+          opacity: 0;
+        }
+        100% {
+          transform: perspective(1200px) rotateY(0deg);
+          opacity: 1;
+        }
+      }
+      @keyframes glowPulse {
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(0.3);
+        }
+        50% {
+          opacity: 0.8;
+          transform: scale(1);
+        }
+      }
+      @keyframes glowRayShine {
+        0% {
+          opacity: 0;
+          transform: translateY(60px) scale(0);
+        }
+        50% {
+          opacity: 0.6;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-100px) scale(1.5);
+        }
+      }
+      @keyframes particleFloat {
+        0% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-200px) scale(0);
+        }
+      }
+      @keyframes splashFadeOut {
+        0% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+      }
+      #splash-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: linear-gradient(
+          135deg,
+          #667eea 0%,
+          #764ba2 50%,
+          #f093fb 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .splash-book {
+        perspective: 1500px;
+        position: relative;
+        width: 400px;
+        height: 500px;
+      }
+      .splash-book-content {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          #fff9e6 0%,
+          #fff0d9 50%,
+          #ffe6cc 100%
+        );
+        border-radius: 30px;
+        box-shadow:
+          0 30px 80px rgba(0, 0, 0, 0.4),
+          inset -8px 0 20px rgba(0, 0, 0, 0.08),
+          inset 2px 0 10px rgba(255, 255, 255, 0.8);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 50px 35px;
+        text-align: center;
+        animation: bookPageRight 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        transform-style: preserve-3d;
+        position: relative;
+      }
+      .splash-book-content::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 10%;
+        bottom: 10%;
+        width: 8px;
+        background: linear-gradient(
+          90deg,
+          #8b6f47 0%,
+          #d4a574 50%,
+          #8b6f47 100%
+        );
+        border-radius: 8px 0 0 8px;
+        box-shadow: inset 2px 0 3px rgba(0, 0, 0, 0.3);
+      }
+      .splash-book-cover {
+        font-size: 100px;
+        margin-bottom: 25px;
+        animation: bookPageLeft 2.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s
+          forwards;
+        transform: scale(0);
+      }
+      .splash-book-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 32px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 15px;
+        animation: bookPageLeft 2.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s
+          forwards;
+        transform: scale(0);
+      }
+      .splash-book-subtitle {
+        font-size: 15px;
+        color: #666;
+        animation: bookPageLeft 2.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s
+          forwards;
+        line-height: 1.8;
+        transform: scale(0);
+        font-weight: 600;
+      }
+      .splash-book-author {
+        font-size: 12px;
+        color: #999;
+        animation: bookPageLeft 2.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s
+          forwards;
+        line-height: 1.6;
+        transform: scale(0);
+        margin-top: 15px;
+        font-style: italic;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        padding-top: 15px;
+      }
+      .splash-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+      .splash-glow-ray {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 2px;
+        height: 80px;
+        background: linear-gradient(
+          to top,
+          rgba(255, 215, 0, 0.6),
+          transparent
+        );
+        transform: translate(-50%, -50%);
+        opacity: 0;
+      }
+      .splash-glow-ray:nth-child(1) {
+        transform: translate(-50%, -50%) rotate(0deg) translateY(-40px);
+        animation: glowRayShine 2.2s ease-out 1.2s forwards;
+      }
+      .splash-glow-ray:nth-child(2) {
+        transform: translate(-50%, -50%) rotate(45deg) translateY(-40px);
+        animation: glowRayShine 2.2s ease-out 1.3s forwards;
+      }
+      .splash-glow-ray:nth-child(3) {
+        transform: translate(-50%, -50%) rotate(90deg) translateY(-40px);
+        animation: glowRayShine 2.2s ease-out 1.4s forwards;
+      }
+      .splash-glow-ray:nth-child(4) {
+        transform: translate(-50%, -50%) rotate(135deg) translateY(-40px);
+        animation: glowRayShine 2.2s ease-out 1.5s forwards;
+      }
+      .splash-glow-ray:nth-child(5) {
+        transform: translate(-50%, -50%) rotate(180deg) translateY(-40px);
+        animation: glowRayShine 2.2s ease-out 1.6s forwards;
+      }
+      .splash-glow-ray:nth-child(6) {
+        transform: translate(-50%, -50%) rotate(225deg) translateY(-40px);
+        animation: glowRayShine 2.2s ease-out 1.7s forwards;
+      }
+      .splash-glow-ray:nth-child(7) {
+        transform: translate(-50%, -50%) rotate(270deg) translateY(-40px);
+        animation: glowRayShine 2.2s ease-out 1.8s forwards;
+      }
+      .splash-glow-ray:nth-child(8) {
+        transform: translate(-50%, -50%) rotate(315deg) translateY(-40px);
+        animation: glowRayShine 2.2s ease-out 1.9s forwards;
+      }
+      .splash-particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: radial-gradient(circle, #ffd700 0%, #ffa500 100%);
+        border-radius: 50%;
+        box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+      }
+      #splash-screen.fade-out {
+        animation: splashFadeOut 0.8s ease-in forwards;
+      }
     </style>
   </head>
   <body
     class="h-full bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 overflow-x-hidden select-none"
   >
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+      <div class="splash-book">
+        <div class="splash-book-content">
+          <div class="splash-book-cover">🏅</div>
+          <div class="splash-book-title">Sistem Ujian Berbasis Komputer</div>
+          <div class="splash-book-subtitle">SDIT Al Hikmah</div>
+          <div class="splash-book-author">Oleh Anida Qoriyati Nur</div>
+        </div>
+        <div class="splash-glow">
+          <div class="splash-glow-ray"></div>
+          <div class="splash-glow-ray"></div>
+          <div class="splash-glow-ray"></div>
+          <div class="splash-glow-ray"></div>
+          <div class="splash-glow-ray"></div>
+          <div class="splash-glow-ray"></div>
+          <div class="splash-glow-ray"></div>
+          <div class="splash-glow-ray"></div>
+        </div>
+      </div>
+    </div>
+
     <div id="app" class="h-full w-full overflow-auto p-4 md:p-6">
       <section
         id="screen-subjects"
@@ -140,6 +433,33 @@
           <p class="text-gray-600 text-sm font-medium">
             Silakan tentukan mata pelajaran ujian hari ini di bawah:
           </p>
+        </div>
+
+        <!-- Instruction Card with Floating Animation -->
+        <div class="max-w-2xl w-full mb-8">
+          <div
+            class="instruction-card bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 rounded-2xl border-2 border-indigo-200 p-6 shadow-lg"
+          >
+            <div class="flex items-center gap-4">
+              <div class="instruction-icon">👇</div>
+              <div class="flex-1 text-left">
+                <h3 class="text-lg font-bold text-indigo-700 mb-1">
+                  Pilih Mata Pelajaran
+                </h3>
+                <p class="text-sm text-gray-700">
+                  Silakan pilih salah satu mata pelajaran di bawah untuk
+                  melanjutkan ujian Anda. Setiap mapel memiliki tingkat
+                  kesulitan dan durasi yang berbeda.
+                </p>
+              </div>
+              <div
+                class="hidden md:block text-4xl animate-bounce"
+                style="animation: bounce 2s infinite"
+              >
+                ✨
+              </div>
+            </div>
+          </div>
         </div>
 
         <div

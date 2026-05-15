@@ -24,6 +24,7 @@ const DOM = {
   screenAuth: document.getElementById("screen-auth"),
   screenExam: document.getElementById("screen-exam"),
   screenResult: document.getElementById("screen-result"),
+  splashScreen: document.getElementById("splash-screen"),
   subjectsContainer: document.getElementById("subjects-container"),
   authSubjectBadge: document.getElementById("auth-subject-badge"),
   displayMapel: document.getElementById("display-mapel"),
@@ -83,10 +84,30 @@ const DOM = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  initApp();
-  setupSecurity();
-  initCursorParticles();
+  // Tampilkan splash screen dan jalankan inisialisasi setelah splash selesai
+  showSplashScreen();
 });
+
+function showSplashScreen() {
+  // Splash screen ditampilkan selama 3.5 detik (2s animasi + 1.5s display)
+  setTimeout(() => {
+    if (DOM.splashScreen) {
+      DOM.splashScreen.classList.add("fade-out");
+    }
+
+    // Setelah fade out selesai (0.8s), sembunyikan splash screen dan tampilkan app
+    setTimeout(() => {
+      if (DOM.splashScreen) {
+        DOM.splashScreen.style.display = "none";
+      }
+
+      // Jalankan inisialisasi app
+      initApp();
+      setupSecurity();
+      initCursorParticles();
+    }, 800); // Sesuai dengan durasi splashFadeOut animation
+  }, 2800); // 2s animasi buku + 0.8s display sebelum fade out
+}
 
 function initApp() {
   DOM.inputTanggal.valueAsDate = new Date();
@@ -720,35 +741,6 @@ const particleColors = [
 
 // Ornamen shapes (emoji/simbol)
 const ornaments = ["✨", "⭐", "🌟", "💫", "✴️", "🎯", "🎨"];
-
-// function initCursorParticles() {
-//   // Setup listener untuk screen subjects saja
-//   DOM.screenSubjects.addEventListener("mouseenter", () => {
-//     isSubjectsScreenActive = true;
-//   });
-//   DOM.screenSubjects.addEventListener("mouseleave", () => {
-//     isSubjectsScreenActive = false;
-//   });
-
-//   // Set active on initial load jika screen subjects visible
-//   if (!DOM.screenSubjects.classList.contains("hidden")) {
-//     isSubjectsScreenActive = true;
-//   }
-
-//   document.addEventListener("mousemove", (e) => {
-//     cursorX = e.clientX;
-//     cursorY = e.clientY;
-
-//     // Buat partikel setiap 20ms saat di screen subjects
-//     if (isSubjectsScreenActive) {
-//       particleCreateTimer++;
-//       if (particleCreateTimer > 2) {
-//         createFloatingParticle(cursorX, cursorY);
-//         particleCreateTimer = 0;
-//       }
-//     }
-//   });
-// }
 
 function initCursorParticles() {
   // Pemicu pergerakan mouse global di seluruh dokumen
