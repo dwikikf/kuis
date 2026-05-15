@@ -12,10 +12,12 @@ let state = {
   studentClass: "",
   examDate: "",
   isSubmitting: false,
+  pendingSubjectId: null, // For pending secure confirmation
 };
 
 // Callback untuk menampung fungsi aksi modal konfirmasi
 let modalConfirmCallback = null;
+let pendingSecureConfirmCallback = null;
 
 const DOM = {
   screenSubjects: document.getElementById("screen-subjects"),
@@ -66,6 +68,17 @@ const DOM = {
   modalIconBox: document.getElementById("modal-icon-box"),
   modalBtnCancel: document.getElementById("modal-btn-cancel"),
   modalBtnConfirm: document.getElementById("modal-btn-confirm"),
+
+  // DOM Secure Modal
+  secureModal: document.getElementById("secure-modal"),
+  secureModalCard: document.getElementById("secure-modal-card"),
+  secureModalTitle: document.getElementById("secure-modal-title"),
+  secureModalDesc: document.getElementById("secure-modal-desc"),
+  secureModalInput: document.getElementById("secure-modal-input"),
+  secureModalError: document.getElementById("secure-modal-error"),
+  secureModalErrorText: document.getElementById("secure-modal-error-text"),
+  secureModalBtnCancel: document.getElementById("secure-modal-btn-cancel"),
+  secureModalBtnConfirm: document.getElementById("secure-modal-btn-confirm"),
   toastContainer: document.getElementById("toast-container"),
 };
 
@@ -97,7 +110,8 @@ function renderSubjectsGrid() {
 
   DOM.subjectsContainer.querySelectorAll("[data-id]").forEach((card) => {
     card.addEventListener("click", () => {
-      selectSubject(card.getAttribute("data-id"));
+      const subjectId = card.getAttribute("data-id");
+      showSecureConfirmation(subjectId);
     });
   });
 }
@@ -180,6 +194,19 @@ function setupEventListeners() {
   DOM.modalBtnConfirm.addEventListener("click", () => {
     if (modalConfirmCallback) modalConfirmCallback();
     closeCustomModal();
+  });
+
+  // Listener Tombol Secure Modal
+  DOM.secureModalBtnCancel.addEventListener("click", () => closeSecureModal());
+  DOM.secureModalBtnConfirm.addEventListener("click", () => {
+    validateSecureCode();
+  });
+
+  // Allow Enter key to trigger validation
+  DOM.secureModalInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      validateSecureCode();
+    }
   });
 }
 
@@ -364,6 +391,52 @@ function closeCustomModal() {
     DOM.customModal.classList.add("hidden");
     modalConfirmCallback = null;
   }, 150);
+}
+
+function showSecureConfirmation(subjectId) {
+  const subject = QUIZ_DATA.find((s) => s.id === subjectId);
+  if (!subject) return;
+
+  state.pendingSubjectId = subjectId;
+  DOM.secureModalTitle.textContent = `Verifikasi ${subject.title}`;
+  DOM.secureModalInput.value = "";
+  DOM.secureModalError.classList.add("hidden");
+  DOM.secureModalInput.focus();
+
+  DOM.secureModal.classList.remove("hidden");
+  setTimeout(() => DOM.secureModalCard.classList.remove("scale-95"), 10);
+  lucide.createIcons();
+}
+
+function closeSecureModal() {
+  DOM.secureModalCard.classList.add("scale-95");
+  setTimeout(() => {
+    DOM.secureModal.classList.add("hidden");
+    state.pendingSubjectId = null;
+  }, 150);
+}
+
+function validateSecureCode() {
+  const subject = QUIZ_DATA.find((s) => s.id === state.pendingSubjectId);
+  if (!subject) return;
+
+  const inputCode = DOM.secureModalInput.value.trim();
+  const correctCode = subject.secure;
+
+  if (inputCode === correctCode) {
+    closeSecureModal();
+    selectSubject(state.pendingSubjectId);
+  } else {
+    DOM.secureModalError.classList.remove("hidden");
+    DOM.secureModalErrorText.textContent = "Kode keamanan salah! Coba lagi.";
+    DOM.secureModalInput.classList.add("border-red-400", "bg-red-50");
+    DOM.secureModalInput.value = "";
+
+    setTimeout(() => {
+      DOM.secureModalInput.classList.remove("border-red-400", "bg-red-50");
+      DOM.secureModalInput.focus();
+    }, 1500);
+  }
 }
 
 // MANAGEMENT ENGINE TOAST KUSTOM
