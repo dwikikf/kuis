@@ -89,13 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function showSplashScreen() {
-  // Splash screen ditampilkan selama 3.5 detik (2s animasi + 1.5s display)
+  // Splash screen ditampilkan selama 4.5 detik untuk animasi storybook & cahaya
   setTimeout(() => {
     if (DOM.splashScreen) {
       DOM.splashScreen.classList.add("fade-out");
     }
 
-    // Setelah fade out selesai (0.8s), sembunyikan splash screen dan tampilkan app
+    // Setelah fade out selesai (1.2s), sembunyikan splash screen dan tampilkan app
     setTimeout(() => {
       if (DOM.splashScreen) {
         DOM.splashScreen.style.display = "none";
@@ -105,8 +105,8 @@ function showSplashScreen() {
       initApp();
       setupSecurity();
       initCursorParticles();
-    }, 800); // Sesuai dengan durasi splashFadeOut animation
-  }, 2800); // 2s animasi buku + 0.8s display sebelum fade out
+    }, 1200); // Sesuai dengan durasi splashFadeOut animation
+  }, 4500); // 3.6s animasi storybook + 0.9s display sebelum fade out
 }
 
 function initApp() {
@@ -688,12 +688,12 @@ function toggleLoadingOverlay(show) {
 
 function requestFullscreen() {
   const el = document.documentElement;
-  if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
+  if (el.requestFullscreen) el.requestFullscreen().catch(() => { });
 }
 
 function exitFullscreen() {
   if (document.fullscreenElement && document.exitFullscreen)
-    document.exitFullscreen().catch(() => {});
+    document.exitFullscreen().catch(() => { });
 }
 
 function createConfettiParticles() {
