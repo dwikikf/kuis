@@ -83,10 +83,11 @@ const DOM = {
   toastContainer: document.getElementById("toast-container"),
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Tampilkan splash screen dan jalankan inisialisasi setelah splash selesai
+if (document.readyState === 'loading') {
+  document.addEventListener("DOMContentLoaded", showSplashScreen);
+} else {
   showSplashScreen();
-});
+}
 
 function showSplashScreen() {
   // Splash screen ditampilkan selama 4.5 detik untuk animasi storybook & cahaya
