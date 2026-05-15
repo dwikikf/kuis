@@ -6,6 +6,7 @@ const QUIZ_DATA = [
     classDefault: "Kelas 6 (Aqaba)",
     duration: 90,
     theme: "from-red-500 to-orange-500",
+    secure: "8813",
     questions: [
       {
         q: "Anak memiliki hak di rumah, salah satu hak anak di rumah adalah …",
@@ -433,6 +434,7 @@ const QUIZ_DATA = [
     classDefault: "Kelas 6 (Aqaba)",
     duration: 90,
     theme: "from-blue-500 to-indigo-500",
+    secure: "1256",
     questions: [
       {
         q: "Bilangan 255.955.000 dibaca………",
@@ -723,6 +725,381 @@ const QUIZ_DATA = [
       {
         q: "Sebuah pizza dibagi menjadi 8 bagian sama besar. Rina memakan 3 bagian dan Siti memakan 2 bagian. Pecahan pizza yang sudah dimakan adalah ....",
         options: ["3/8", "2/8", "5/8", "7/8"],
+        answer: "C",
+      },
+    ],
+  },
+  {
+    id: "BINDO",
+    title: "Bahasa Indonesia",
+    classDefault: "Kelas 6 (Aqaba)",
+    duration: 90,
+    theme: "from-green-500 to-emerald-500",
+    secure: "9865",
+    questions: [
+      {
+        q: "Perhatikan kalimat berikut:\n1). Budi membaca Al-Qur’an\n2.) Adik tidur \n3.) Ibu memasak sayur\n4.) Ayah mencuci mobil\n5.) Burung terbang\n6.) Siswa mengerjakan PR\nContoh kalimat transitif ditunjukkan oleh nomer ….",
+        options: [
+          "1), 2) , 3), 4)",
+          "2), 3), 4), 5)",
+          "1), 3), 4), 6)",
+          "3), 4), 5), 6)",
+        ],
+        answer: "C",
+      },
+      {
+        q: "Kalimat berikut yang termasuk kalimat intransitif adalah..",
+        options: [
+          "Rizan membaca buku",
+          "Ayah memperbaiki sepeda",
+          "Adik menangis",
+          "Ibu memasak nasi",
+        ],
+        answer: "C",
+      },
+      {
+        q: "Calista menulis surat di atas meja. Manakah kata yang berfungsi sebagai subjek dari kalimat di atas?",
+        options: ["Calista", "Menulis", "Surat", "Di Atas Meja"],
+        answer: "A",
+      },
+      {
+        q: "Firas bermain handphone.\nKalimat tersebut menggunakan pola…..",
+        options: [
+          "Subjek - Predikat - Objek - Keterangan ( SPOK )",
+          "Subjek - Predikat - Keterangan ( SPK )",
+          "Subjek - Predikat - Objek ( SPO )",
+          "Objek - Predikat - Subjek ( OPS )",
+        ],
+        answer: "C",
+      },
+      {
+        q: "Perhatikan kalimat berikut ini !\nUlar kobra memiliki bisa yang mematikan.\nAndi bisa mengerjakan tugas dengan baik.\nKata bisa pada kalimat pertama memiliki arti …",
+        options: ["dapat", "racun", "mampu", "sanggup"],
+        answer: "B",
+      },
+      {
+        q: "Pak Alwi menyampaikan bahwa hari Senin akan diadakan ulangan harian\nTanda baca yang tepat untuk melengkapi kalimat di atas adalah …",
+        options: ["Titik (.)", "Koma (,)", "Seru (!)", "Tanda Tanya (?)"],
+        answer: "A",
+      },
+      {
+        q: "Perhatikan pernyataan berikut!\n(1) Manusia membutuhkan air untuk hidup.\n(2) Air putih lebih enak daripada minuman lainnya.\nInformasi yang termasuk fakta adalah ….",
+        options: ["1", "2", "1 dan 2", "Tidak Ada"],
+        answer: "A",
+      },
+      {
+        q: "Perhatikan kalimat berikut!\nIbu sedang memasak di dapur.\nKata berimbuhan me- pada kalimat tersebut adalah ….",
+        options: ["Ibu", "Sedang", "Memasak", "Dapur"],
+        answer: "C",
+      },
+      {
+        q: "Iklan yang dibuat oleh pemerintah atau organisasi tertentu dengan tujuan untuk memberikan penerangan, edukasi, atau imbauan kepada masyarakat tanpa mencari keuntungan disebut…",
+        options: [
+          "Iklan Baris",
+          "Iklan Penawaran",
+          "Iklan Niaga",
+          "Iklan Layanan Masyarakat",
+        ],
+        answer: "D",
+      },
+      {
+        q: "Bacalah ringkasan berikut!\nSheenaz sangat giat berlatih tari Pendet setiap sore. Ia ingin menunjukkan keindahan budaya Bali saat pertukaran pelajar nanti. Ayahnya selalu mendukung dengan membelikan perlengkapan tari yang dibutuhkan.\nSiapakah tokoh utama yang diceritakan memiliki semangat melestarikan budaya dalam teks tersebut?",
+        options: ["Guru Tari", "Pelajar Bali", "Ayah Sheenaz", "Sheenaz"],
+        answer: "D",
+      },
+      {
+        q: "Tokoh utama yang menjadi pusat perhatian dalam cerita dan biasanya digambarkan dengan sifat-sifat baik disebut ….",
+        options: ["Antagonis", "Tritagonis", "Protagonis", "Figuran"],
+        answer: "C",
+      },
+      {
+        q: "Fadhli ingin mengisi formulir pendaftaran peminjaman buku perpustakaan dengan data acak sebagai berikut:\n(1) Nama\n(2) Kelas\n(3) Alamat\n(4) Tanggal Lahir\nPengisian data formulir yang tepat adalah ….",
+        options: ["1-2-4-3", "1-3-2-4", "1-4-3-2", "1-4-2-3"],
+        answer: "D",
+      },
+      {
+        q: "Perhatikan pernyataan-pernyataan di bawah ini!\n1) Memerlukan perangko dan kotak pos untuk pengirimannya.\n2) Surat dikirimkan melalui jaringan internet menggunakan perangkat komputer atau ponsel pintar.\n3) Membutuhkan waktu beberapa hari agar surat sampai ke alamat tujuan.\n4) Pesan dapat terkirim dan diterima secara langsung (instan) dalam hitungan detik.\n5) Alamat tujuan ditulis dalam format khusus seperti nama@penyedia.com.\nBerdasarkan pernyataan di atas, ciri khas dan makna dari surat elektronik (e-mail) yang tepat ditunjukkan oleh nomor…",
+        options: ["1,2, dan 3", "1,3, dan 5", "2,4, dan 5", "3,4, dan 5"],
+        answer: "C",
+      },
+      {
+        q: 'Bacalah kutipan artikel di bawah ini dengan cermat!\n"Dunia internasional kini semakin mengenal bakat dari Indonesia. Salah satu pianis muda berbakat asal Jakarta telah berhasil menembus panggung musik jazz dunia di Amerika Serikat. Sejak usia dini, ia sudah menunjukkan kemampuan luar biasa dalam bermain piano. Prestasi puncaknya adalah ketika ia berhasil masuk dalam nominasi penghargaan musik paling bergengsi di dunia, yaitu Grammy Awards, untuk kategori album jazz terbaik."\nBerdasarkan kutipan artikel di atas, siapakah sosok musisi Indonesia yang dimaksud?',
+        options: [
+          "Isyana Sarasvati",
+          "Joey Alexander",
+          "Sandhy Sondoro",
+          "Rich Brian",
+        ],
+        answer: "B",
+      },
+      {
+        q: "Cerita Malin Kundang mengisahkan seorang anak yang durhaka kepada ibunya setelah ia menjadi kaya. Akibatnya, ia dikutuk menjadi batu. cerita ini sering dinasehatkan oleh orang tua kepada anak-anaknya. Mengapa cerita Malin Kundang masih relevan dan penting untuk diceritakan hingga saat ini?",
+        options: [
+          "Karena cerita tersebut berasal dari Sumatera Barat.",
+          "Agar anak-anak takut pergi merantau.",
+          "Karena kutukan menjadi batu benar-benar bisa terjadi.",
+          "Untuk mengajarkan pentingnya menghormati dan menyayangi orang tua",
+        ],
+        answer: "D",
+      },
+      {
+        q: "Perhatikan kalimat berikut (1) Indonesia merdeka pada tanggal 17 Agustus 1945. (2) Menurut saya, Indonesia adalah negara yang paling indah. Kalimat yang merupakan Fakta adalah..",
+        options: [
+          "Kalimat 1",
+          "Kalimat 2",
+          "Kalimat 1 dan 2",
+          "Tidak Ada yang Fakta",
+        ],
+        answer: "A",
+      },
+      {
+        q: "Perhatikan pernyataan berikut!\n (1) Menyusun daftar pertanyaan\n (2) Menentukan tujuan wawancara\n (3) Menentukan narasumber\n (4) Mempelajari topik yang akan dibahas\nUrutan yang tepat langkah-langkah yang perlu dilakukan sebelum melakukan wawancara adalah ….",
+        options: [
+          "(2) – (3) – (4) – (1)",
+          "(3) – (2) – (1) – (4)",
+          "(4) – (2) – (3) – (1)",
+          "(2) – (4) – (3) – (1)",
+        ],
+        answer: "A",
+      },
+      {
+        q: "Perhatikan kalimat berikut!\n “Air mata ibu mengalir seperti sungai yang tak pernah kering saat melepas kepergian anaknya.”\n Majas yang tepat digunakan dalam kalimat tersebut adalah ….",
+        options: ["personifikasi", "Metafora", "Hiperbola", "Simile"],
+        answer: "D",
+      },
+      {
+        q: "“Ibu selalu menasehati kami agar tidak hidup seperti katak dalam tempurung.”\nMakna majas asosiasi pada kalimat di atas adalah ….",
+        options: [
+          "Orang yang memiliki wawasan sangat sempit namun merasa tahu segalanya",
+          "Sesorang yang lincah dan pandai melompat ke sana kemari",
+          "Orang yang selalu merasa ketakutan dan bersembunyi di tempat gelap",
+          "Seseorang yang hidupnya selalu berpindah - pindah tempat tinggal",
+        ],
+        answer: "A",
+      },
+      {
+        q: "“Suara gemuruh awan kelabu menggema di langit.”\nMajas yang digunakan dalam kalimat di atas adalah …..",
+        options: ["personifikasi", "Metafora", "Hiperbola", "Onomatope"],
+        answer: "D",
+      },
+      {
+        q: "Walaupun berasal dari keluarga tidak mampu, arman tidak pernah patah arang. ia belajar dengan giat setiap malam agar bisa mendapatkan beasiswa ke sekolah favoritnya. Makna ungkapan “Patah Arang” adalah…",
+        options: [
+          "Putus Asa",
+          "Kehabisan Akal",
+          "Tidak Bersemangat",
+          "Sakit Hati",
+        ],
+        answer: "A",
+      },
+      {
+        q: ' "Harga kebutuhan pokok di pasar tradisional mengalami kenaikan yang signifikan menjelang hari raya."\nAntonim dari kata kenaikan pada kalimat tersebut adalah ....',
+        options: ["Penurunan", "Peningkatan", "Perbaikan", "Perubahan"],
+        answer: "A",
+      },
+      {
+        q: 'Perhatikan pernyataan berikut:\n Kata "indah" memiliki makna yang sama dengan kata "elok".\nBerdasarkan pernyataan tersebut, kata yang bersinonim dengan kata indah adalah ....',
+        options: ["Buruk", "Cantik", "Rusak", "Kusam"],
+        answer: "B",
+      },
+      {
+        q: 'Bacalah ringkasan pidato berikut!\n"Teman-teman sekalian, marilah kita mulai menjaga kebersihan lingkungan sekolah dari hal yang paling kecil, yaitu membuang sampah pada tempatnya. Dengan lingkungan yang bersih, belajar pun akan menjadi lebih nyaman. Akhir kata, mohon maaf jika ada perkataan saya yang kurang berkenan. Terima kasih atas perhatiannya."\nBagian teks pidato tersebut merupakan ...',
+        options: ["Pembukaan", "Isi", "Penutup", "Pendahuluan"],
+        answer: "C",
+      },
+      {
+        q: "Albi menjadi buah bibir di sekolahnya setelah memenangkan lomba pidato tingkat nasional. Arti ungkapan “buah bibir” dalam kalimat tersebut adalah ….",
+        options: [
+          "Bibir yang manis",
+          "Bahan pembicaraan orang banyak",
+          "Hadiah berupa buah",
+          "Sesuatu yang dimakan",
+        ],
+        answer: "B",
+      },
+      {
+        q: "Perhatikan kalimat berikut!\n1.\tIbu memasak sayur di dapur.\n2.\tAdik tidur nyenyak di kamar.\n3.\tKakak menendang bola ke arah gawang.\n4.\tBurung-burung beterbangan di langit.\nKalimat yang termasuk kalimat transitif ditunjukkan oleh nomor ....",
+        options: ["1 dan 2", "1 dan 3", "2 dan 4", "3 dan 4"],
+        answer: "B",
+      },
+      {
+        q: "Perhatikan kalimat berikut!\n“Pada musim hujan, banyak warga mengalami banjir karena sungai meluap.”\nKata “banjir” pada kalimat tersebut memiliki makna yang berbeda dengan kalimat ....",
+        options: [
+          "Desa itu banjir bantuan dari para donatur.",
+          "Air sungai meluap hingga menyebabkan banjir besar.",
+          "Jalan raya tergenang akibat banjir semalam.",
+          "Rumah warga rusak diterjang banjir bandang.",
+        ],
+        answer: "A",
+      },
+      {
+        q: "Mala ingin melengkapi kalimat berikut.\n“Ibu sedang .... pakaian di halaman rumah agar cepat kering.”\nKata berimbuhan me- yang tepat untuk melengkapi kalimat tersebut adalah ....",
+        options: ["Menjemur", "Jemuran", "Dijemur", "terjemur"],
+        answer: "A",
+      },
+      {
+        q: "Antonim kata “hemat” pada kalimat “Aliciea anak yang hemat dalam menggunakan uang saku” adalah ....",
+        options: ["Rajin", "Boros", "Pelit", "Sederhana"],
+        answer: "B",
+      },
+      {
+        q: "Perhatikan kalimat berikut!\n“Globalisasi membuat informasi dari berbagai negara dapat diketahui dengan cepat.”\nMakna kata “globalisasi” pada kalimat tersebut adalah ....",
+        options: [
+          "perpindahan penduduk",
+          "kerja sama antarwarga",
+          "mendunianya suatu hal",
+          "kegiatan jual beli di pasar",
+        ],
+        answer: "C",
+      },
+      {
+        q: "Perhatikan bagian surat berikut!\nTasikmalaya, 12 Mei 2026\nBagian surat resmi tersebut disebut ....",
+        options: [
+          "Salam Pembuka",
+          "Kepala Surat",
+          "Tempat dan Tanggal Surat",
+          "Isi Surat",
+        ],
+        answer: "C",
+      },
+      {
+        q: "Bacalah pernyataan berikut!\n“Wawancara yang ditulis kembali dalam bentuk percakapan lengkap disebut transkrip wawancara.”\nMakna dari transkrip wawancara adalah ....",
+        options: [
+          "hasil pidato narasumber",
+          "catatan singkat wawancara",
+          "rekaman suara wawancara",
+          "hasil penulisan kembali wawancara secara lengkap",
+        ],
+        answer: "D",
+      },
+      {
+        q: "Perhatikan kalimat berikut!\n“Semangat para pemain itu membara saat pertandingan dimulai.”\nKalimat tersebut menggunakan majas ....",
+        options: ["Hiperbola", "Metafora", "Personifikasi", "Asosiasi"],
+        answer: "B",
+      },
+      {
+        q: "Perhatikan kalimat berikut!\n“Menurut saya, membaca buku lebih menyenangkan daripada bermain gim sepanjang hari.”\nKalimat tersebut termasuk ....",
+        options: ["Fakta", "Opini", "Perintah", "Saran"],
+        answer: "B",
+      },
+      {
+        q: "Perhatikan data pengunjung perpustakaan berikut!\nSenin : 20 siswa\nSelasa : 35 siswa\nRabu : 30 siswa\nKamis : 40 siswa\nBerdasarkan data tersebut, kesimpulan yang tepat adalah ....",
+        options: [
+          "Hari Senin paling banyak pengunjungnya",
+          "Hari Kamis memiliki pengunjung terbanyak",
+          "Hari Selasa paling sedikit pengunjungnya",
+          "Jumlah pengunjung setiap hari sama",
+        ],
+        answer: "B",
+      },
+      {
+        q: "Penulisan nilai uang yang tepat adalah ....",
+        options: [
+          "Rp15.000,00 (lima belas ribu rupiah)",
+          "Rp.15.000 (lima belas ribu rupiah)",
+          "15.000 rupiah",
+          "Rp15,000.00",
+        ],
+        answer: "A",
+      },
+      {
+        q: "Perhatikan idiom berikut!\n1.\tKambing hitam\n2.\tBuah tangan\n3.\tPanjang tangan\nMakna idiom “panjang tangan” adalah ....",
+        options: [
+          "Suka menolong",
+          "Suka Mencuri",
+          "Ringan Tangan",
+          "Mudah Marah",
+        ],
+        answer: "B",
+      },
+      {
+        q: "Berikut yang termasuk unsur surat resmi adalah ....",
+        options: [
+          "nama panggilan",
+          "alamat teman",
+          "nomor surat",
+          "nama hewan peliharaan",
+        ],
+        answer: "C",
+      },
+      {
+        q: "Perhatikan kalimat langsung berikut!\nAyah berkata, “Besok kita akan pergi ke rumah nenek.”\nKalimat tidak langsung yang tepat adalah ....",
+        options: [
+          "Ayah berkata bahwa besok kita akan pergi ke rumah nenek.",
+          "Ayah berkata, besok kita akan pergi ke rumah nenek.",
+          "“Besok kita akan pergi ke rumah nenek,” kata Ayah.",
+          "Ayah mengatakan besok pergi rumah nenek.",
+        ],
+        answer: "A",
+      },
+      {
+        q: "Perhatikan kutipan berikut!\n“Pendidikan adalah senjata paling ampuh untuk mengubah dunia.”\nTokoh yang terkenal dengan kutipan tersebut adalah ....",
+        options: [
+          "Ir. Soekarno",
+          "B.J. Habibie",
+          "Nelson Mandela",
+          "Ki Hajar Dewantara",
+        ],
+        answer: "C",
+      },
+      {
+        q: "Perhatikan kalimat berikut!\n“Nissa membaca buku cerita di perpustakaan.”\nPola kalimat tersebut adalah ....",
+        options: ["SP", "SPO", "SPK", "SPOK"],
+        answer: "D",
+      },
+      {
+        q: "Perhatikan kalimat berikut!\n“Bunga desa itu menjadi bunga tidur bagiku.”\nMakna kata “bunga” yang berbeda ditunjukkan pada bagian ....",
+        options: ["Bunga Desa", "Bunga Tidur", "Menjadi", "Bagiku"],
+        answer: "B",
+      },
+      {
+        q: "Perhatikan kalimat berikut!\n“Petani itu sedang .... sawah sejak pagi.”\nKata berimbuhan me- yang tepat adalah ....",
+        options: ["Membajak", "Bajakan", "Dibajak", "Terbajak"],
+        answer: "A",
+      },
+      {
+        q: "Bacalah pernyataan berikut!\n“Air mendidih pada suhu 100°C.”\nPernyataan tersebut termasuk ....",
+        options: ["Opini", "Khayalan", "Fakta", "Saran"],
+        answer: "C",
+      },
+      {
+        q: "Sebuah iklan berisi ajakan memakai helm saat berkendara untuk menjaga keselamatan. Jenis iklan tersebut adalah ....",
+        options: [
+          "Niaga",
+          "Pelayanan Masyarakat",
+          "Penawaran Barang",
+          "Hiburan",
+        ],
+        answer: "B",
+      },
+      {
+        q: "Antonim kata “tinggi” pada kalimat “Pohon itu sangat tinggi” adalah ....",
+        options: ["Besar", "Pendek", "Luas", "Sempit"],
+        answer: "B",
+      },
+      {
+        q: "Perhatikan ciri-ciri berikut!\n1.\tMenggunakan bahasa santai\n2.\tDitujukan kepada teman atau keluarga\n3.\tMenggunakan bahasa resmi baku\nCiri surat pribadi ditunjukkan oleh nomor ....",
+        options: ["1 dan 2", "1 dan 3", "2 dan 3", "1, 2, dan 3"],
+        answer: "A",
+      },
+      {
+        q: "Perhatikan kalimat berikut!\n“Suara penyanyi itu merdu seperti bulu perindu.”\nKalimat tersebut menggunakan majas ....",
+        options: ["Hiperbola", "Metafora", "Asosiasi", "Personifikasi"],
+        answer: "C",
+      },
+      {
+        q: "Perhatikan kalimat berikut!\n“Menurutku, olahraga pagi adalah kegiatan paling menyenangkan.”\nKalimat tersebut termasuk ....",
+        options: ["Fakta", "Opini", "Berita", "Pengumuman"],
+        answer: "B",
+      },
+      {
+        q: "Berikut yang merupakan ciri kalimat langsung adalah ....",
+        options: [
+          "Menggunakan kata penghubung bahwa",
+          "Tidak memakai tanda petik",
+          "Menirukan ucapan seseorang secara langsung",
+          "Isi kalimat sudah diubah penulis",
+        ],
         answer: "C",
       },
     ],
