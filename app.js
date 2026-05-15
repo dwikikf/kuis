@@ -85,6 +85,7 @@ const DOM = {
 document.addEventListener("DOMContentLoaded", () => {
   initApp();
   setupSecurity();
+  initCursorParticles();
 });
 
 function initApp() {
@@ -695,4 +696,108 @@ function createConfettiParticles() {
     document.body.appendChild(p);
     setTimeout(() => p.remove(), 4000);
   }
+}
+
+// ==================== CURSOR PARTICLES SYSTEM ====================
+// Efek Google Antigravity dengan Ornamen Mengikuti Cursor
+
+let cursorX = 0,
+  cursorY = 0;
+let particleCreateTimer = 0;
+let isSubjectsScreenActive = false;
+
+// Array warna-warna indah untuk partikel
+const particleColors = [
+  "rgba(99, 102, 241, 0.8)", // Indigo
+  "rgba(139, 92, 246, 0.8)", // Violet
+  "rgba(236, 72, 153, 0.8)", // Pink
+  "rgba(59, 130, 246, 0.8)", // Blue
+  "rgba(34, 197, 94, 0.8)", // Green
+  "rgba(251, 146, 60, 0.8)", // Orange
+  "rgba(14, 165, 233, 0.8)", // Sky
+  "rgba(168, 85, 247, 0.8)", // Purple
+];
+
+// Ornamen shapes (emoji/simbol)
+const ornaments = ["✨", "⭐", "🌟", "💫", "✴️", "🎯", "🎨"];
+
+function initCursorParticles() {
+  // Setup listener untuk screen subjects saja
+  DOM.screenSubjects.addEventListener("mouseenter", () => {
+    isSubjectsScreenActive = true;
+  });
+  DOM.screenSubjects.addEventListener("mouseleave", () => {
+    isSubjectsScreenActive = false;
+  });
+
+  // Set active on initial load jika screen subjects visible
+  if (!DOM.screenSubjects.classList.contains("hidden")) {
+    isSubjectsScreenActive = true;
+  }
+
+  document.addEventListener("mousemove", (e) => {
+    cursorX = e.clientX;
+    cursorY = e.clientY;
+
+    // Buat partikel setiap 20ms saat di screen subjects
+    if (isSubjectsScreenActive) {
+      particleCreateTimer++;
+      if (particleCreateTimer > 2) {
+        createFloatingParticle(cursorX, cursorY);
+        particleCreateTimer = 0;
+      }
+    }
+  });
+}
+
+function createFloatingParticle(x, y) {
+  const particle = document.createElement("div");
+  particle.className = "floating-particle";
+
+  // Pilih random ornament atau warna
+  const useOrnament = Math.random() > 0.4;
+  const randomColor =
+    particleColors[Math.floor(Math.random() * particleColors.length)];
+  const particleSize = Math.random() * 12 + 8; // 8-20px
+
+  if (useOrnament) {
+    // Gunakan ornament emoji
+    const ornament = ornaments[Math.floor(Math.random() * ornaments.length)];
+    particle.textContent = ornament;
+    particle.style.fontSize = particleSize + "px";
+    particle.style.width = particleSize + 2 + "px";
+    particle.style.height = particleSize + 2 + "px";
+    particle.style.display = "flex";
+    particle.style.alignItems = "center";
+    particle.style.justifyContent = "center";
+    particle.style.color = randomColor;
+  } else {
+    // Gunakan gradient circle
+    particle.style.width = particleSize + "px";
+    particle.style.height = particleSize + "px";
+    particle.style.backgroundColor = randomColor;
+    particle.style.boxShadow = `0 0 ${particleSize}px ${randomColor}`;
+  }
+
+  particle.style.left = x + (Math.random() - 0.5) * 30 + "px";
+  particle.style.top = y + (Math.random() - 0.5) * 30 + "px";
+
+  // Random animation type
+  const animationType = Math.random();
+  if (animationType > 0.6) {
+    particle.classList.add("orbit");
+  } else if (animationType > 0.3) {
+    particle.classList.add("pulse");
+  }
+
+  // Add custom CSS variable untuk randomize movement
+  const randomTx = (Math.random() - 0.5) * 60;
+  particle.style.setProperty("--tx", randomTx + "px");
+
+  document.body.appendChild(particle);
+
+  // Cleanup partikel setelah animasi selesai
+  setTimeout(() => {
+    particle.remove();
+  }, 2500);
 }
