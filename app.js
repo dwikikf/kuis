@@ -721,26 +721,47 @@ const particleColors = [
 // Ornamen shapes (emoji/simbol)
 const ornaments = ["✨", "⭐", "🌟", "💫", "✴️", "🎯", "🎨"];
 
+// function initCursorParticles() {
+//   // Setup listener untuk screen subjects saja
+//   DOM.screenSubjects.addEventListener("mouseenter", () => {
+//     isSubjectsScreenActive = true;
+//   });
+//   DOM.screenSubjects.addEventListener("mouseleave", () => {
+//     isSubjectsScreenActive = false;
+//   });
+
+//   // Set active on initial load jika screen subjects visible
+//   if (!DOM.screenSubjects.classList.contains("hidden")) {
+//     isSubjectsScreenActive = true;
+//   }
+
+//   document.addEventListener("mousemove", (e) => {
+//     cursorX = e.clientX;
+//     cursorY = e.clientY;
+
+//     // Buat partikel setiap 20ms saat di screen subjects
+//     if (isSubjectsScreenActive) {
+//       particleCreateTimer++;
+//       if (particleCreateTimer > 2) {
+//         createFloatingParticle(cursorX, cursorY);
+//         particleCreateTimer = 0;
+//       }
+//     }
+//   });
+// }
+
 function initCursorParticles() {
-  // Setup listener untuk screen subjects saja
-  DOM.screenSubjects.addEventListener("mouseenter", () => {
-    isSubjectsScreenActive = true;
-  });
-  DOM.screenSubjects.addEventListener("mouseleave", () => {
-    isSubjectsScreenActive = false;
-  });
-
-  // Set active on initial load jika screen subjects visible
-  if (!DOM.screenSubjects.classList.contains("hidden")) {
-    isSubjectsScreenActive = true;
-  }
-
+  // Pemicu pergerakan mouse global di seluruh dokumen
   document.addEventListener("mousemove", (e) => {
     cursorX = e.clientX;
     cursorY = e.clientY;
 
-    // Buat partikel setiap 20ms saat di screen subjects
-    if (isSubjectsScreenActive) {
+    // VALIDASI KUAT: Partikel hanya akan diproduksi jika #screen-subjects tidak memiliki class "hidden"
+    // Pendekatan ini jauh lebih aman di GitHub Pages daripada mendeteksi mouseenter/mouseleave kontainer
+    if (
+      DOM.screenSubjects &&
+      !DOM.screenSubjects.classList.contains("hidden")
+    ) {
       particleCreateTimer++;
       if (particleCreateTimer > 2) {
         createFloatingParticle(cursorX, cursorY);
