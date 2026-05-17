@@ -1,0 +1,30 @@
+{
+  "name": "quiz-system",
+  "version": "1.0.0",
+  "description": "Sistem Kuis Digital SDIT Al Hikmah",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:concurrent": "jest concurrent.test.js",
+    "test:all": "jest --verbose"
+  },
+  "keywords": [
+    "quiz",
+    "kuis",
+    "ujian"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.5",
+    "@testing-library/dom": "^9.3.3",
+    "@testing-library/jest-dom": "^6.1.5",
+    "babel-jest": "^30.4.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}
