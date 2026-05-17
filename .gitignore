@@ -5,7 +5,6 @@ node_modules/
 coverage/
 
 # Sensitif (Hapus file ini dari git jika sudah terlanjur di-add)
-pwd.txt
 *.env
 
 # Logs
