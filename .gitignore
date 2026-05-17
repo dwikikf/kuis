@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Testing coverage
+coverage/
+
+# Sensitif (Hapus file ini dari git jika sudah terlanjur di-add)
+pwd.txt
+*.env
+
+# Logs
+*.log
+
+# OS Metadata
+.DS_Store
+Thumbs.db
+
+# Temp/Output files
+SETUP_SUMMARY.txt
