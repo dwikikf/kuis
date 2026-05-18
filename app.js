@@ -83,7 +83,7 @@ const DOM = {
   toastContainer: document.getElementById("toast-container"),
 };
 
-if (document.readyState === 'loading') {
+if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", showSplashScreen);
 } else {
   showSplashScreen();
@@ -215,8 +215,10 @@ function setupEventListeners() {
   // Listener Tombol Custom Modal
   DOM.modalBtnCancel.addEventListener("click", () => closeCustomModal());
   DOM.modalBtnConfirm.addEventListener("click", () => {
-    if (modalConfirmCallback) modalConfirmCallback();
-    closeCustomModal();
+    if (modalConfirmCallback) {
+      modalConfirmCallback();
+      closeCustomModal();
+    }
   });
 
   // Listener Tombol Secure Modal
@@ -253,7 +255,7 @@ function startTimerEngine() {
     if (state.timeLeft <= 0) {
       clearInterval(state.timerInterval);
       showCustomToast("Waktu habis! Lembar jawaban dikirim otomatis.", "info");
-      processFinalSubmission();
+      triggerFinalSubmissionConfirmation(true); // bypassValidation = true
       return;
     }
 
@@ -403,6 +405,48 @@ function openCustomModal(title, description, isWarning, onConfirm) {
       '<i data-lucide="help-circle" class="w-7 h-7"></i>';
   }
 
+  // Reset button state untuk modal normal
+  DOM.modalBtnConfirm.classList.remove("hidden");
+  DOM.modalBtnCancel.textContent = "Batal";
+
+  DOM.customModal.classList.remove("hidden");
+  setTimeout(() => DOM.modalCard.classList.remove("scale-95"), 10);
+  lucide.createIcons();
+}
+
+function openCustomModalWithUnanswered(title, description, unansweredList) {
+  // Modal khusus untuk menampilkan soal yang belum terjawab
+  DOM.modalTitle.textContent = title;
+
+  // Buat daftar soal belum terjawab dengan styling
+  let listHTML = `<p class="text-slate-500 text-sm leading-relaxed mb-4">${description.split("\n")[0]}</p>`;
+
+  // Tambahkan daftar nomor soal dalam box yang eye-catching
+  listHTML +=
+    '<div class="bg-red-50 border-2 border-red-200 rounded-xl p-4 mb-4">';
+  listHTML +=
+    '<p class="text-red-700 font-semibold text-sm mb-2">📋 Nomor Soal Belum Dijawab:</p>';
+  listHTML += '<div class="flex flex-wrap gap-2">';
+  unansweredList.forEach((num) => {
+    listHTML += `<span class="bg-red-200 text-red-800 font-bold px-3 py-1 rounded-lg text-xs">${num}</span>`;
+  });
+  listHTML += "</div></div>";
+  listHTML += `<p class="text-slate-500 text-sm leading-relaxed">${description.split("\n")[2]}</p>`;
+
+  DOM.modalDesc.innerHTML = listHTML;
+
+  // Tidak ada callback - hanya close saja
+  modalConfirmCallback = null;
+
+  DOM.modalIconBox.className =
+    "w-14 h-14 bg-red-50 rounded-2xl border border-red-200 flex items-center justify-center text-red-500 mb-4";
+  DOM.modalIconBox.innerHTML =
+    '<i data-lucide="alert-circle" class="w-7 h-7"></i>';
+
+  // Hide confirm button, show only cancel
+  DOM.modalBtnConfirm.classList.add("hidden");
+  DOM.modalBtnCancel.textContent = "Kembali Isi Soal";
+
   DOM.customModal.classList.remove("hidden");
   setTimeout(() => DOM.modalCard.classList.remove("scale-95"), 10);
   lucide.createIcons();
@@ -495,16 +539,40 @@ function showCustomToast(message, type = "info") {
   }, 4000);
 }
 
-function triggerFinalSubmissionConfirmation() {
-  const unanswered = state.answers.filter((a) => a === null).length;
+function getUnansweredQuestions() {
+  const unanswered = [];
+  state.answers.forEach((answer, index) => {
+    if (answer === null) {
+      unanswered.push(index + 1); // 1-indexed for display
+    }
+  });
+  return unanswered;
+}
+
+function triggerFinalSubmissionConfirmation(bypassValidation = false) {
+  // bypassValidation = true ketika waktu habis (auto-submit)
+  const unansweredList = getUnansweredQuestions();
+
+  // Jika ada soal belum terjawab dan tidak bypass
+  if (unansweredList.length > 0 && !bypassValidation) {
+    const unansweredStr = unansweredList.join(", ");
+    const title = "❌ Jawaban Belum Lengkap!";
+    const desc = `Soal yang belum dijawab: ${unansweredStr}\n\nMohon isi semua soal sebelum mengumpulkan jawaban Anda.`;
+    openCustomModalWithUnanswered(title, desc, unansweredList);
+    return;
+  }
+
+  // Jika semua sudah terjawab atau waktu habis, tampilkan konfirmasi final
   let title = "Kumpulkan Ujian?";
   let desc =
     "Apakah kamu yakin sudah selesai dan ingin mengumpulkan seluruh lembar jawaban sekarang?";
   let isWarning = false;
 
-  if (unanswered > 0) {
-    title = "Jawaban Belum Lengkap!";
-    desc = `Perhatian! Masih ada ${unanswered} nomor soal yang kosong belum kamu isi. Kamu yakin ingin mengumpulkannya sekarang?`;
+  // Jika di-bypass (waktu habis), gunakan pesan berbeda
+  if (bypassValidation) {
+    title = "Waktu Habis!";
+    desc =
+      "Waktu pengerjaan ujian Anda telah habis. Lembar jawaban akan dikirim otomatis sekarang.";
     isWarning = true;
   }
 
@@ -689,12 +757,12 @@ function toggleLoadingOverlay(show) {
 
 function requestFullscreen() {
   const el = document.documentElement;
-  if (el.requestFullscreen) el.requestFullscreen().catch(() => { });
+  if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
 }
 
 function exitFullscreen() {
   if (document.fullscreenElement && document.exitFullscreen)
-    document.exitFullscreen().catch(() => { });
+    document.exitFullscreen().catch(() => {});
 }
 
 function createConfettiParticles() {

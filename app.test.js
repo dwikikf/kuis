@@ -459,4 +459,159 @@ describe("Quiz Application - Core Logic", () => {
       expect(score).toBe(100);
     });
   });
+
+  describe("Submission Validation - New Feature", () => {
+    // Helper function untuk get unanswered questions
+    const getUnansweredQuestions = (answers) => {
+      const unanswered = [];
+      answers.forEach((answer, index) => {
+        if (answer === null) {
+          unanswered.push(index + 1); // 1-indexed untuk display
+        }
+      });
+      return unanswered;
+    };
+
+    test("should identify all unanswered questions", () => {
+      const answers = ["A", null, "C", null, "E"];
+      const unanswered = getUnansweredQuestions(answers);
+
+      expect(unanswered).toEqual([2, 4]);
+      expect(unanswered.length).toBe(2);
+    });
+
+    test("should return empty array when all questions are answered", () => {
+      const answers = ["A", "B", "C", "D"];
+      const unanswered = getUnansweredQuestions(answers);
+
+      expect(unanswered).toEqual([]);
+      expect(unanswered.length).toBe(0);
+    });
+
+    test("should return all question numbers when none are answered", () => {
+      const answers = [null, null, null, null];
+      const unanswered = getUnansweredQuestions(answers);
+
+      expect(unanswered).toEqual([1, 2, 3, 4]);
+      expect(unanswered.length).toBe(4);
+    });
+
+    test("should allow submission when all questions are answered", () => {
+      const answers = ["A", "B", "C", "D"];
+      const unanswered = getUnansweredQuestions(answers);
+
+      const canSubmit = unanswered.length === 0;
+      expect(canSubmit).toBe(true);
+    });
+
+    test("should block submission when questions are unanswered (without bypass)", () => {
+      const answers = ["A", null, "C", null];
+      const unanswered = getUnansweredQuestions(answers);
+      const bypassValidation = false;
+
+      const shouldShowWarning = unanswered.length > 0 && !bypassValidation;
+      expect(shouldShowWarning).toBe(true);
+    });
+
+    test("should allow submission when time runs out (bypass validation)", () => {
+      const answers = ["A", null, "C", null];
+      const unanswered = getUnansweredQuestions(answers);
+      const bypassValidation = true;
+
+      const shouldShowWarning = unanswered.length > 0 && !bypassValidation;
+      expect(shouldShowWarning).toBe(false);
+    });
+
+    test("should handle large number of unanswered questions", () => {
+      const answers = new Array(100).fill(null);
+      answers[0] = "A";
+      answers[50] = "C";
+
+      const unanswered = getUnansweredQuestions(answers);
+
+      expect(unanswered.length).toBe(98);
+      expect(unanswered.includes(1)).toBe(false);
+      expect(unanswered.includes(2)).toBe(true);
+      expect(unanswered.includes(51)).toBe(false); // index 50 is answered, so question 51 is answered
+    });
+
+    test("should format unanswered question list correctly for display", () => {
+      const answers = ["A", null, "C", null, "E", null];
+      const unanswered = getUnansweredQuestions(answers);
+
+      const displayList = unanswered.join(", ");
+      expect(displayList).toBe("2, 4, 6");
+    });
+
+    test("should track submission state correctly", () => {
+      let submissionState = { isSubmitting: false };
+
+      // Before submission
+      expect(submissionState.isSubmitting).toBe(false);
+
+      // Start submission
+      submissionState.isSubmitting = true;
+      expect(submissionState.isSubmitting).toBe(true);
+
+      // After submission
+      submissionState.isSubmitting = false;
+      expect(submissionState.isSubmitting).toBe(false);
+    });
+
+    test("should validate submission with mixed scenario", () => {
+      // Scenario: 20 questions, 15 answered, 5 empty
+      const questions = Array(20).fill({ answer: "A" });
+      const answers = [
+        "A",
+        "A",
+        null,
+        "A",
+        "A",
+        null,
+        "A",
+        "A",
+        null,
+        "A",
+        "A",
+        "A",
+        "A",
+        null,
+        "A",
+        "A",
+        "A",
+        null,
+        "A",
+        "A",
+      ];
+
+      const unanswered = getUnansweredQuestions(answers);
+      const correctCount = answers.filter(
+        (a, i) => a === questions[i].answer,
+      ).length;
+
+      expect(unanswered.length).toBe(5);
+      expect(unanswered).toEqual([3, 6, 9, 14, 18]);
+      expect(correctCount).toBe(15);
+    });
+
+    test("should prevent duplicate questions in unanswered list", () => {
+      const answers = [null, null, null];
+      const unanswered = getUnansweredQuestions(answers);
+
+      const uniqueUnanswered = [...new Set(unanswered)];
+      expect(unanswered.length).toBe(uniqueUnanswered.length);
+    });
+
+    test("should maintain question order in unanswered list", () => {
+      const answers = [null, "B", null, "D", null];
+      const unanswered = getUnansweredQuestions(answers);
+
+      // Check if array is sorted
+      const isSorted = unanswered.every(
+        (val, i, arr) => i === 0 || arr[i - 1] <= val,
+      );
+      expect(isSorted).toBe(true);
+      expect(unanswered).toEqual([1, 3, 5]);
+    });
+  });
 });
